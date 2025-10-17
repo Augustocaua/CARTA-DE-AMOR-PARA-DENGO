@@ -84,7 +84,7 @@ const Letter = () => {
               <div className="space-y-4 text-base sm:text-lg leading-relaxed font-body font-light">
                 <p className="first-letter:text-5xl first-letter:font-romantic first-letter:text-primary first-letter:float-left first-letter:mr-2 first-letter:leading-none">
                  
-             Oi amor eu desevolvir essa carta virtual para desejar e expressar meu imenso amor e carinho que tenho por você, hoje a gente completa 1 ano e 10 meses e esse mês  no dia 21 fazemos 2 anos que  a gente foi selados  no mesmo dia 🥹.
+             Oi amor eu desenvolvir essa carta virtual para desejar e expressar meu imenso amor e carinho que tenho por você, hoje a gente completa 1 ano e 10 meses e esse mês  no dia 21 fazemos 2 anos que  a gente foi selados  no mesmo dia 🥹.
                 💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞💞
 
                 </p>
