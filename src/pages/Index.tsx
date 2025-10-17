@@ -19,7 +19,7 @@ const Index = () => {
         <div className="text-center space-y-12 animate-fade-in">
           <div className="space-y-4">
             <h1 className="text-5xl sm:text-7xl text-primary drop-shadow-lg">
-              Você tem uma carta especial
+              Você tem uma carta especial do seu mômô 🙈
             </h1>
             <p className="text-2xl sm:text-3xl text-muted-foreground font-body font-light">
               te esperando...
