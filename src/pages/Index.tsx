@@ -6,6 +6,9 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleOpenLetter = () => {
+    // Garantir reprodução do áudio via gesto do usuário
+    const audio = document.getElementById("bg-audio") as HTMLAudioElement | null;
+    audio?.play().catch(() => {});
     navigate("/carta");
   };
 
@@ -33,7 +36,7 @@ const Index = () => {
             size="lg"
             className="text-xl px-8 py-6 animate-pulse-soft romantic-shine bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 romantic-glow"
           >
-            Abrir meu coração 💖
+            Abrir minha carta de amor 💖
           </Button>
         </div>
       </div>

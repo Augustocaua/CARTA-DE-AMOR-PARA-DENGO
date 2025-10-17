@@ -1,12 +1,51 @@
 import FallingPetals from "@/components/FallingPetals";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const Letter = () => {
   useEffect(() => {
     // Scroll to top on mount
     window.scrollTo(0, 0);
   }, []);
-  
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const audio = document.getElementById("bg-audio") as HTMLAudioElement | null;
+    if (!audio) return;
+    const syncState = () => setIsPlaying(!audio.paused);
+    audio.addEventListener("play", syncState);
+    audio.addEventListener("pause", syncState);
+    audio.addEventListener("ended", syncState);
+    audio.addEventListener("canplay", syncState);
+    syncState();
+    return () => {
+      audio.removeEventListener("play", syncState);
+      audio.removeEventListener("pause", syncState);
+      audio.removeEventListener("ended", syncState);
+      audio.removeEventListener("canplay", syncState);
+    };
+  }, []);
+
+  const toggleSound = async () => {
+    const audio = document.getElementById("bg-audio") as HTMLAudioElement | null;
+    if (!audio) return;
+    if (audio.paused) {
+      try {
+        const AC = (window as any).AudioContext || (window as any).webkitAudioContext;
+        if (AC) {
+          const ctx = new AC();
+          await ctx.resume().catch(() => {});
+        }
+        await audio.play();
+      } catch (_) {}
+    } else {
+      try {
+        audio.pause();
+      } catch (_) {}
+    }
+  };
+
   const polaroids = [
     { src: "/dengo/Imagem do WhatsApp de 2025-10-17 à(s) 01.03.45_715f524e-convertido-de-jpg.jpeg" },
     { src: "/dengo/Imagem do WhatsApp de 2025-10-17 à(s) 01.03.46_1504b9e3-convertido-de-jpg.jpeg" },
@@ -32,7 +71,7 @@ const Letter = () => {
       <FallingPetals />
 
       {/* Polaroids na frente, menores e posicionadas nos cantos/laterais */}
-      <div className="absolute inset-0 pointer-events-none z-30">
+      <div className="absolute inset-0 pointer-events-none z-30 hidden sm:block">
         {overlayPolaroids.map((p, idx) => (
           <div
             key={idx}
@@ -133,6 +172,17 @@ Feliz nosso dia 💕💕💕💕"
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Botão de ativar/desativar som (fixo, mobile-friendly) */}
+      <div className="fixed bottom-4 left-0 right-0 z-40 flex justify-center sm:bottom-6">
+        <Button
+          onClick={toggleSound}
+          size="lg"
+          className="px-6 py-4 rounded-full shadow-lg bg-primary text-white hover:bg-primary/90 transition-colors"
+        >
+          {isPlaying ? "Desativar som 🔇" : "Ativar som 🔊"}
+        </Button>
       </div>
     </div>
   );
