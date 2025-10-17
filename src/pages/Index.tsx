@@ -1,18 +1,12 @@
 import { Button } from "@/components/ui/button";
 import Envelope from "@/components/Envelope";
-import FloatingHearts from "@/components/FloatingHearts";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const Index = () => {
   const navigate = useNavigate();
-  const [showHearts, setShowHearts] = useState(false);
 
   const handleOpenLetter = () => {
-    setShowHearts(true);
-    setTimeout(() => {
-      navigate("/carta");
-    }, 1500);
+    navigate("/carta");
   };
 
   return (
@@ -20,8 +14,6 @@ const Index = () => {
       {/* Background gradient */}
       <div className="fixed inset-0 bg-[var(--gradient-romantic)]" />
       <div className="fixed inset-0 bg-[var(--gradient-glow)]" />
-      
-      {showHearts && <FloatingHearts />}
       
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
         <div className="text-center space-y-12 animate-fade-in">
